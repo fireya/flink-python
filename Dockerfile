@@ -67,6 +67,8 @@ RUN set -ex \
 # ("Requirement already up-to-date: pip==8.1.2 in /usr/local/lib/python3.6/site-packages")
 # https://github.com/docker-library/python/pull/143#issuecomment-241032683
 	&& pip install --no-cache-dir --upgrade --force-reinstall "pip==$PYTHON_PIP_VERSION" \
+	&& pip install elasticsearch \
+	&& pip install kafka-python \
 # then we use "pip list" to ensure we don't have more than one pip version installed
 # https://github.com/docker-library/python/pull/100
 	&& [ "$(pip list |tac|tac| awk -F '[ ()]+' '$1 == "pip" { print $2; exit }')" = "$PYTHON_PIP_VERSION" ] \
@@ -86,9 +88,7 @@ RUN set -ex \
 	)" \
 	&& apk add --virtual .python-rundeps $runDeps \
 	&& apk del .build-deps \
-	&& rm -rf /usr/src/python ~/.cache \
-	&& pip install elasticsearch \
-	&& pip install kafka-python
+	&& rm -rf /usr/src/python ~/.cache
     
 MAINTAINER tobilg@gmail.com
 
