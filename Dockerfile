@@ -86,8 +86,8 @@ RUN set -ex \
 	)" \
 	&& apk add --virtual .python-rundeps $runDeps \
 	&& apk del .build-deps \
-	&& rm -rf /usr/src/python ~/.cache
-	&& pip install elasticsearch
+	&& rm -rf /usr/src/python ~/.cache \
+	&& pip install elasticsearch \
 	&& pip install kafka-python
     
 MAINTAINER tobilg@gmail.com
