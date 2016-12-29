@@ -21,9 +21,6 @@ if [ "$1" = "jobmanager" ]; then
 
     echo "Starting Job Manager"
     $FLINK_HOME/bin/jobmanager.sh start cluster
-    echo "Config file: " && grep '^[^\n#]' $FLINK_CONFIG_FILE
-    echo "Sleeping 10 seconds, then start to tail the log file"
-    sleep 10 && tail -f `ls $FLINK_HOME/log/*.log | head -n1`
 
 elif [ "$1" = "taskmanager" ]; then
 
@@ -36,9 +33,6 @@ elif [ "$1" = "taskmanager" ]; then
 
     echo "Starting Task Manager"
     $FLINK_HOME/bin/taskmanager.sh start
-    echo "Config file: " && grep '^[^\n#]' $FLINK_CONFIG_FILE
-    echo "Sleeping 10 seconds, then start to tail the log file"
-    sleep 10 && tail -f `ls $FLINK_HOME/log/*.log | head -n1`
 
 else
     $@
