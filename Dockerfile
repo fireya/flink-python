@@ -1,4 +1,4 @@
-FROM java:8-jre-alpine
+FROM java:8-jre
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
